@@ -3,10 +3,6 @@ import { Card, CardImg, CardText, CardBody, CardTitle, ListGroup, ListGroupItem,
 
 class DishDetail extends Component {
 
-    constructor(props) {
-        super(props);
-    }
-
     renderDish(dish) {
         return (
             <Card>
@@ -36,7 +32,8 @@ class DishDetail extends Component {
                                 {comment.comment}
                             </ListGroupItemText>                             
                             <ListGroupItemText>
-                                -- {comment.author}, {comment.date}
+                                -- {comment.author}, {new Intl.DateTimeFormat('en-US', {year: 'numeric', month: 'short', day: '2-digit'})
+                                .format(new Date(Date.parse(comment.date)))}
                             </ListGroupItemText>      
                         </ListGroupItem>
                     );
