@@ -1,5 +1,28 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## How to run?
+
+Install all the dependencies for this project:
+```
+$ yarn install
+```
+
+Make sure that you have install the node module `json-server`; otherwise, run the command:
+```
+$ npm install json-server -g
+```
+
+Direct to the json-server folder and up the `json-server`:
+```
+$ cd json-server 
+$ json-server --watch db.json -d 2000 -p 3001
+```
+
+Up the React application by running the following command:
+```
+$ yarn start
+```
+
 ## Available Scripts
 
 In the project directory, you can run:
