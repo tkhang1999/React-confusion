@@ -42,7 +42,7 @@ export const postComment = (dishId, rating, author, comment) => (dispatch) => {
     .catch(error => {
         console.log("Post comments", error.message);
         alert("Your comment could not be posted\nError: " + error.message);
-    })
+    });
 };
 
 export const fetchDishes = () => (dispatch) => {
@@ -183,3 +183,33 @@ export const addLeaders = (leaders) => ({
     type: ActionTypes.ADD_LEADERS,
     payload: leaders
 });
+
+export const postFeedback = (feedback) => (dispatch) => {
+    return fetch(baseUrl + "feedback", {
+        method: "POST",
+        body: JSON.stringify(feedback),
+        headers: {
+            "Content-Type": "application/json"
+        },
+        credentials: "same-origin"
+    })
+    .then(response => {
+        if (response.ok) {
+            return response;
+        } else {
+            let error = new Error("Error " + response.status + ": " + response.statusText);
+            error.response = response;
+            throw error;
+        }
+    },
+    error => {
+        let errmess = new Error(error.message);
+        throw errmess;
+    })
+    .then(response => response.json())
+    .then(response => alert("Thank you for your feedback!\n" + JSON.stringify(response)))
+    .catch(error => {
+        console.log("Post feedbacks", error.message);
+        alert("Your feedback could not be posted\nError: " + error.message);
+    });
+}
